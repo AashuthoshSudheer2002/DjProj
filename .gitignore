@@ -7,7 +7,13 @@ __pycache__/
 venv/
 env/
 .venv/
-bugenv/
+
+# Keep bugenv root visible for selective tracking, but exclude runtime artifacts and private files.
+!bugenv/
+bugenv/bin/
+bugenv/include/
+bugenv/lib/
+bugenv/lib64/
 
 # Distribution / packaging
 build/
