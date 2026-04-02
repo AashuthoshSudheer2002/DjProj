@@ -1,7 +1,3 @@
-# Python bytecode
-__pycache__/
-*.py[cod]
-*$py.class
 
 bugenv/
 venv/
@@ -9,12 +5,6 @@ __pycache__/
 *.pyc
 .env
 
-# Distribution / packaging
-build/
-dist/
-*.egg-info/
-pip-wheel-metadata/
-*.egg
 
 # Django
 # Ignore SQLite DB (local dev DB)
@@ -24,9 +14,6 @@ media/
 # Collected static files
 staticfiles/
 
-# Logs
-*.log
-django-debug.log
 
 # Unit test / coverage reports
 .pytest_cache/
@@ -56,18 +43,4 @@ usernames and passwords.txt
 *.so
 *.pyd
 
-# Node / frontend
-node_modules/
-npm-debug.log
-yarn-error.log
 
-# Misc
-.cache/
-celerybeat-schedule
-__pycache__/
-
-# If you intentionally track migrations, remove the following lines.
-# By default migrations are usually committed; don't ignore migrations/
-# Uncomment to ignore migration files (NOT recommended):
-# */migrations/*.py
-# */migrations/*.pyc
