@@ -1,0 +1,73 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment directories
+venv/
+env/
+.venv/
+bugenv/
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+pip-wheel-metadata/
+*.egg
+
+# Django
+# Ignore SQLite DB (local dev DB)
+db.sqlite3
+# Media (user uploads)
+media/
+# Collected static files
+staticfiles/
+
+# Logs
+*.log
+django-debug.log
+
+# Unit test / coverage reports
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# Editor directories and files
+.vscode/
+.idea/
+*.suo
+*.user
+*.userprefs
+*.pydevproject
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Environment / secrets
+.env
+*.env
+usernames and passwords.txt
+
+# Compiled extensions
+*.so
+*.pyd
+
+# Node / frontend
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Misc
+.cache/
+celerybeat-schedule
+__pycache__/
+
+# If you intentionally track migrations, remove the following lines.
+# By default migrations are usually committed; don't ignore migrations/
+# Uncomment to ignore migration files (NOT recommended):
+# */migrations/*.py
+# */migrations/*.pyc
