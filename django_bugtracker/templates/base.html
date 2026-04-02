@@ -1,0 +1,100 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Bug Tracker{% endblock %}</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'images/bugicon.png' %}" type="image/x-icon">
+
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        bug: '#f87171',
+                        fix: '#34d399',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 font-sans text-gray-800">
+    <!-- Navbar -->
+    <nav class="bg-black shadow-md">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+        <a href="{% url 'django_bugapp:home' %}" class="text-2xl font-bold text-white">BugTracker</a>
+        <div class="flex items-center gap-2">
+            
+           {% if user.is_authenticated %}
+                <span class="text-white mr-2">Hi, {{ user.username }}</span>
+                {% if user.is_superuser %}
+                    <a href="{% url 'admin:index' %}" class="bg-white text-black px-3 py-1 rounded hover:bg-gray-200 transition">Admin</a>
+                    <form action="{% url 'django_bugapp:register' %}" method="get">
+                            <button type="submit" class="bg-white text-black px-3 py-1 rounded hover:bg-gray-200 transition">Register</button>
+                    </form>
+                    <a href="{% url 'django_bugapp:user-list' %}" class="bg-white text-black px-3 py-1 rounded hover:bg-gray-200 transition">Users</a>
+                {% endif %}
+                <form method="post" action="{% url 'django_bugapp:logout' %}">
+                    {% csrf_token %}
+                     <button type="submit" class="bg-white text-black px-3 py-1 rounded hover:bg-red-600 hover:text-white hover:bg-blue-600 transition">Logout</button>
+                </form>
+                <a href="{% url 'django_bugapp:sprint_list' %}" class="bg-white text-black px-3 py-1 rounded hover:bg-gray-200 transition">Sprints</a>
+                <a href="{% url 'django_bugapp:bug-list' %}" class="bg-white text-black px-3 py-1 rounded hover:bg-gray-200 transition"> Bugs</a>
+                <a href="{% url 'django_bugapp:bug_reports' %}" class="bg-white text-black px-3 py-1 rounded hover:bg-gray-200 transition">Reports</a>
+                <a href="{% url 'django_bugapp:profile' %}" class="bg-white text-black px-3 py-1 rounded hover:bg-gray-200 transition">Profile</a>
+            {% else %}
+                <a href="{% url 'django_bugapp:login' %}" class="bg-white text-black px-3 py-1 rounded hover:bg-gray-200 transition">Login</a>
+               
+            {% endif %}
+        </div>
+    </div>
+</nav>
+
+    <!-- Content -->
+    <main class="max-w-7xl mx-auto py-8 px-4">
+        {% block content %}
+
+        <!-- Buttons Section -->
+        <div class="mb-6 text-center">
+            {% if user.is_superuser %}
+                <!-- Only for Superusers -->
+                <div class="flex justify-center gap-4">
+                    <a href="{% url 'django_bugapp:sprint_create' %}" class="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition">
+                        Create New Sprint
+                    </a>
+                </div>
+                <div class="flex justify-center gap-4 mt-4">
+                <a href="{% url 'django_bugapp:bug-create' %}" class="bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600 transition">
+                    Create New Bug
+                </a>
+            </div>
+            {% endif %}
+            
+            <!-- New Bug Button -->
+            
+        </div>
+
+        {% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white mt-12 py-4 text-center text-sm text-gray-500">
+        &copy; 2025 Django BugTracker.
+    </footer>
+
+</body>
+</html>

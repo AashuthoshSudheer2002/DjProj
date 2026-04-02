@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <h1 class="text-3xl font-bold text-green-600 mb-6">Bug List</h1>
+
+    <ul class="space-y-4">
+        {% for bug in bugs %}
+            <li id="bug-{{ bug.id }}">
+            <a href="{% url 'django_bugapp:bug-detail' pk=bug.pk %}"
+               class="inline-block px-4 py-2 bg-red-600 text-white font-semibold rounded-lg shadow-md hover:bg-red-700 transition">
+                {{ bug.title }}
+            </a>
+            <span class="text-sm text-gray-600 ml-2">Duration: <span class="duration">Loading...</span></span>
+        </li>
+        {% empty %}
+            <li class="text-gray-500">No bugs reported yet.</li>
+        {% endfor %}
+    </ul>
+
+<!-- Add jQuery if not already included -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+$(document).ready(function() {
+    $.ajax({
+        url: "{% url 'django_bugapp:bug-durations' %}",
+        method: "GET",
+        success: function(data) {
+            data.forEach(function(bug) {
+                // Select the element inside the bug's <li> by bug ID
+                $("#bug-" + bug.id + " .duration").text(bug.duration);
+            });
+        },
+        error: function() {
+            alert("Error loading bug durations.");
+        }
+    });
+});
+</script>
+  
+{% endblock %}
