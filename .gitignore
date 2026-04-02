@@ -3,17 +3,11 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-# Virtual environment directories
+bugenv/
 venv/
-env/
-.venv/
-
-# Keep bugenv root visible for selective tracking, but exclude runtime artifacts and private files.
-!bugenv/
-bugenv/bin/
-bugenv/include/
-bugenv/lib/
-bugenv/lib64/
+__pycache__/
+*.pyc
+.env
 
 # Distribution / packaging
 build/
